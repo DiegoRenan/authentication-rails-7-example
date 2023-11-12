@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
+  def user_signed_in?
+    current_user.present?
+  end
+
   def logout(user)
     Current.user = nil
     reset_session
