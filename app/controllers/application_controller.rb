@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    User.find_by(id: session[:user_id])
+    Current.user ||= authenticate_user_from_session
   end
   helper_method :current_user
+
+  def authenticate_user_from_session
+    User.find_by(id: session[:user_id])
+  end
 
   def login(user)
     Current.user = user
