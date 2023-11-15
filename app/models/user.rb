@@ -2,5 +2,5 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
-  normalizes :email, ->(email) { email.strip.downcase }
+  normalizes :email, with: ->(email) { email.strip.downcase }
 end
