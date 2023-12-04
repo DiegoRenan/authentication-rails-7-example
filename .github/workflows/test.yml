@@ -5,6 +5,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: authentication_rails_7_example_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB"
     steps:
       - name: Get code
         uses: actions/checkout@v4
