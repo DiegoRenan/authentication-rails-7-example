@@ -11,14 +11,6 @@ jobs:
         image: postgres:16-alpine
         ports:
           - "5432:5432"
-        env:
-          POSTGRES_DB: authentication_rails_7_example_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: localhost
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB"
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -28,10 +20,19 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
       - name: Install dependencies
+        env:
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
         run: |
           bundle install
           bundle exec rake
       - name: Run tests
         run: |
-          bundle exec rake test
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+          bundle exec rails test
 
