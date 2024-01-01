@@ -33,7 +33,6 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle install
-          bundle exec rake
       - name: Create test database
         run: |
           bundle exec rails db:create
