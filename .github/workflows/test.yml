@@ -18,6 +18,8 @@ jobs:
           --health-retries 5
         env:
           POSTGRES_PASSWORD: postgres
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -28,8 +30,6 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         env:
-          PGHOST: 127.0.0.1
-          PGUSER: postgres
           RAILS_ENV: test
         run: |
           bundle install
