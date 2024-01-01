@@ -17,7 +17,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         env:
-          DATABASE_PASSWORD: postgres
+          POSTGRES_PASSWORD: postgres
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -42,4 +42,3 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
           bundle exec rails test
-
