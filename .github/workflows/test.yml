@@ -33,13 +33,13 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle install
-      - name: Create test database
-        run: |
-          bundle exec rails db:create
-      - name: Run tests
-        run: |
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
+      - name: Create test database
+        run: |
+          bundle exec rails db:create
           bundle exec rails db:migrate
+      - name: Run tests
+        run: |
           bundle exec rails test
