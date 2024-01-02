@@ -43,3 +43,45 @@ jobs:
       - name: Run tests
         run: |
           bundle exec rails test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    servies:
+      postgres:
+        image: postgres:16-alpine
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd pg_isready
+          --health-internal 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_PASSWORD: postgres
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+         ruby-version: '3.2'
+         bundler-cache: true
+      - name: Install dependencies
+        env:
+          RAILS_ENV: production
+        run: |
+          bundle install deployment
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Create production database
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+      - name: Precompile assets
+        run: |
+          bundle exec rails assets:precompile
+      - name: Start server
+        run: |
+          bundle exec rails server -d 
+             
