@@ -72,7 +72,7 @@ jobs:
         env:
           RAILS_ENV: production
         run: |
-          bundle install deployment
+          bundle install --deployment
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
