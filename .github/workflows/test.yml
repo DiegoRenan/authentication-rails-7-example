@@ -63,6 +63,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Install Ruby
+        uses: actions/ruby-setup@v1
         with:
          ruby-version: '3.2'
          bundler-cache: true
