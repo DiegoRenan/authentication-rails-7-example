@@ -1,1 +1,19 @@
+name: Create Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver type of new version (major / minor / patch)'
+        required: true
+        type: choice
+        options: 
+        - patch
+        - minor
+        - major
 
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitRef
+        run: ${{ github.ref }}
