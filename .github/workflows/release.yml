@@ -6,5 +6,7 @@ jobs:
   bump-version:
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: action/checkout@v4
       - name: GitRef
         run: ${{ github.ref }}
