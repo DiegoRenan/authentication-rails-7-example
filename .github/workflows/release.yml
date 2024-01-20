@@ -1,7 +1,5 @@
 name: Create Release
-on:
-  push:
-    branches: [main]
+on: workflow_dispatch
 jobs:
   bump-version:
     runs-on: ubuntu-latest
