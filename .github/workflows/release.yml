@@ -9,4 +9,4 @@ jobs:
       - name: Get code
         uses: actions/checkout@v4
       - name: GitRef
-        run: ${{ github.ref }}
+        run: "${{ toJSON(github) }}"
