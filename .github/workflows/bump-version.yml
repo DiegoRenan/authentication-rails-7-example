@@ -60,7 +60,9 @@ jobs:
       run: gem install bump
 
     - name: bump version
-      run: bump ${{ github.event.inputs.version }} --tag --tag-prefix ""
+      env:
+        APP_VERSION: ${{ github.event.inputs.version }} 
+      run: bump $APP_VERSION --tag --tag-prefix ""
 
     - name: Push latest version
       run: git push origin main --follow-tags
