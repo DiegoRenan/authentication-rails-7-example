@@ -36,7 +36,7 @@ jobs:
       with:
         ssh-key: ${{ secrets.DEPLOY_KEY }}
     - name: Echo Deploy Key
-      run: echo "$${{ toJSON(secrets.DEPLOY_KEY) }}"
+      run: echo "${{ toJSON(secrets.DEPLOY_KEY) }}"
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
