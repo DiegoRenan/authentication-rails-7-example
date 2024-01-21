@@ -33,8 +33,6 @@ jobs:
     # not run the workflow to prevent infinite recursion.)
     - name: Check out source
       uses: actions/checkout@v4
-    - name: Install SSH keys
-
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
