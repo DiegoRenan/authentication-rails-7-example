@@ -58,6 +58,10 @@ jobs:
         git config gpg.format ssh
         git config user.signingKey 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESRI82rNpSzY6z0WDE46V+b+vr6nG3FbPMoA6rG7z8W renan.ccomp@gmail.com'
 
+    
+    - name: Install Bump
+      run: gem install bump
+
     - name: bump version
       run: bump ${{ github.event.inputs.version }} --tag --tag-prefix ""
 
