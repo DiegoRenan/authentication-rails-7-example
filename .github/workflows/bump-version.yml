@@ -38,7 +38,6 @@ jobs:
       with:
         ruby-version: '3.2.2'
         bundler-cache: true
-        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install dependencies
       env:
@@ -62,11 +61,12 @@ jobs:
 
     - name: bump version
       env:
-        APP_VERSION: ${{ github.event.inputs.version }} 
+        APP_VERSION: ${{ github.event.inputs.version }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bump $APP_VERSION --tag --tag-prefix ""
 
     - name: Push latest version
-      run: git push origin main --follow-tags
+      run: git push origin main --follow-tags -u $GH_TOKEN
       
     
     
