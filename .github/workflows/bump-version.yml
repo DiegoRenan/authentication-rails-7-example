@@ -38,7 +38,6 @@ jobs:
       with:
         ruby-version: '3.2.2'
         bundler-cache: true
-        token: ${{ secrets. GH_TOKEN }}
 
     - name: Install dependencies
       env:
