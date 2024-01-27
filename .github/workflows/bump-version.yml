@@ -49,12 +49,12 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
 
-#    - name: Setup Git
-#      run: |
-#        git config user.name "Renan Diego"
-#        git config user.email 'renan.ccomp@gmail.com'
-#        git config gpg.format ssh
-#        git config user.signingKey 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESRI82rNpSzY6z0WDE46V+b+vr6nG3FbPMoA6rG7z8W renan.ccomp@gmail.com'
+    - name: Setup Git
+      run: |
+        git config user.name "Renan Diego"
+        git config user.email 'renan.ccomp@gmail.com'
+        git config gpg.format ssh
+        git config user.signingKey '${{${{ secrets. SSH_TOKEN }}'
 
     
     - name: Install Bump
@@ -63,7 +63,6 @@ jobs:
     - name: bump version
       env:
         APP_VERSION: ${{ github.event.inputs.version }}
-        GH_TOKEN: ${{ secrets. GH_TOKEN }}
       run: bump $APP_VERSION --tag --tag-prefix ""
 
     - name: Push latest version
