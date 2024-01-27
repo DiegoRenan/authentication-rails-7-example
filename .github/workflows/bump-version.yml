@@ -38,6 +38,7 @@ jobs:
       with:
         ruby-version: '3.2.2'
         bundler-cache: true
+        ssh: ${{ secrets.SSH_TOKEN }}
 
     - name: Install dependencies
       env:
