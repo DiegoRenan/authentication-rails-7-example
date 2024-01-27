@@ -61,7 +61,7 @@ jobs:
         git config user.name "Renan Diego"
         git config user.email 'renan.ccomp@gmail.com'
         git config gpg.format ssh
-        git config user.signingKey ${{ secrets.SSH_TOKEN }}
+        git config user.signingKey '${{ secrets.SSH_TOKEN }}'
 
     - name: Push latest version
       run: git push origin main --follow-tags
