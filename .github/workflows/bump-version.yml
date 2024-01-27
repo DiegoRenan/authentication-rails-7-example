@@ -62,7 +62,7 @@ jobs:
     - name: bump version
       env:
         APP_VERSION: ${{ github.event.inputs.version }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets. GH_TOKEN }}
       run: bump $APP_VERSION --tag --tag-prefix ""
 
     - name: Push latest version
