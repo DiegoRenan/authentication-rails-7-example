@@ -33,12 +33,16 @@ jobs:
     # not run the workflow to prevent infinite recursion.)
     - name: Check out source
       uses: actions/checkout@v4
+    - name: Install SSH keys
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.GH_TOKEN }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.2'
         bundler-cache: true
-        ssh: ${{ secrets.SSH_TOKEN }}
 
     - name: Install dependencies
       env:
