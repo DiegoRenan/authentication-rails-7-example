@@ -61,16 +61,6 @@ jobs:
         APP_VERSION: ${{ github.event.inputs.version }}
       run: bump $APP_VERSION --tag --tag-prefix ""
 
-    - name: Setup Git
-      run: |
-        git config user.name "Renan Diego"
-        git config user.email 'renan.ccomp@gmail.com'
-        git config gpg.format ssh
-        git config user.signingKey '${{ secrets.GH_TOKEN }}'
-
-    - name: Update remote URL
-      run: git remote set-url origin git@github.com:${{ github.repository }}.git
-
     - name: Push latest version
       run: git push origin main --follow-tags
       
