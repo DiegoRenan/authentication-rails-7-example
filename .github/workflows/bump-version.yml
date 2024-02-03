@@ -59,8 +59,10 @@ jobs:
     - name: bump version
       env:
         APP_VERSION: ${{ github.event.inputs.version }}
-      run: bump $APP_VERSION --tag --tag-prefix ""
-        | echo git log --oneline
+      run: |
+        git config user.name "Renan Diego"
+        git config user.email "renan.ccomp@gmail.com"
+        bump $APP_VERSION --tag --tag-prefix ""
 
     - name: Push latest version
       run: |
