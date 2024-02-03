@@ -60,6 +60,7 @@ jobs:
       env:
         APP_VERSION: ${{ github.event.inputs.version }}
       run: bump $APP_VERSION --tag --tag-prefix ""
+        | echo git log --oneline
 
     - name: Push latest version
       run: |
