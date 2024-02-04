@@ -1,1 +1,3 @@
-VERSION = "1.1.6"
+module Version
+  VERSION = "1.1.6"
+end
