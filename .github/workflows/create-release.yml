@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          key: ${{ secrets.GH_TOKEN }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Create release
         run: gh release create ${{ github.ref }} --generate-notes
         env:
